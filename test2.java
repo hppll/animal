@@ -89,46 +89,4 @@ import java.util.List;
 	        }  catch(IOException  e) { }
 	        System.out.print("!");
 	    }
-
-	class Animal{
-	    public int Number;
-	    public String Animal;
-	    public int Weight;
-	    public int Lifetime;
-
-	    public Animal (int Number, String Animal, int Weight, int Lifetime){
-	        this.Number = Number;
-	        this.Animal = Animal;
-	        this.Weight = Weight;
-	        this.Lifetime = Lifetime;
-	    }
-
-	    // toString обладают все классы в Java, но по умолчанию он возвращает что-то вроде байт-код к примеру "Animal@1540e19d"
-	    // Чтобы он выводил то, что нам необходимо, мы можем его переопределить и выводить то, что нам интересует
-	    @Override
-	    public String toString() {
-	        return this.Number + " " + this.Animal + " " + this.Weight + " " + this.Lifetime;
-	    }
 	}
-class SortWeight implements Comparator<Animal>
-	{
-	SortName sn = new SortName();
-	
-	    public int compare(Animal o1, Animal o2)
-	    {
-	    	sn.compare(o1.Animal, o2.Animal);
-	    	if (o1.Animal.equals(o2.Animal)) {
-	    		return o1.Weight - o2.Weight;
-	    	}else if (o1.Weight == o2.Weight) {
-	    		return o1.Lifetime - o2.Lifetime;
-	    	} else {
-	    	return o1.Weight - o2.Weight;
-	    }
-	}
-class SortName implements Comparator<String>{
-	public int compare(String a, String b) {
-		return a.compareTo(b);
-	}
-		}
-	}
-}
