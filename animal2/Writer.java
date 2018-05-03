@@ -9,13 +9,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Writer {
-	 public static void main(String[] args) throws IOException {
-		 String[] fileNames = new String [3];
-			fileNames[0] = "D:\\uni\\javaP\\Animals\\Animal.txt";
-			fileNames[1] = "D:\\uni\\javaP\\Animals\\Animal2.txt";
-			fileNames[2] = "D:\\uni\\javaP\\Animals\\Animal3.txt";
-			List<Animal> allAnimals = Reader.getAnimalFromFiles(fileNames);
-			Collections.sort(allAnimals, new SortName());
+	 public static void main(List<Animal> allAnimals) throws IOException {
+		// List<Animal> Animals = allAnimals;
 			Reader read = new Reader();
 		 try {
 			 File file = new File("D:\\uni\\javaP\\Animals\\testCharacteristics\\less10.txt");//просто об’єкт
