@@ -17,8 +17,6 @@ public class ComboBoxSample extends Application {
 
     public static void main(String[] args) {
         launch(args);
-    
-   
     }
     @Override public void start(Stage stage) {
         stage.setTitle("ComboBoxSample");
@@ -36,12 +34,10 @@ public class ComboBoxSample extends Application {
         	try {
 				Dispatcher.main(w);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
         }
-        );
-        
+        		);
         
         GridPane grid = new GridPane();
         grid.setVgap(4);
@@ -55,7 +51,5 @@ public class ComboBoxSample extends Application {
         root.getChildren().add(grid);
         stage.setScene(scene);
         stage.show();
-       
-       
     }    
 }

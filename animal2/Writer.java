@@ -13,15 +13,15 @@ public class Writer {
 		// List<Animal> Animals = allAnimals;
 			Reader read = new Reader();
 		 try {
-			 File file = new File("D:\\uni\\javaP\\Animals\\testCharacteristics\\less10.txt");//просто об’єкт
+			 File file = new File("animal2\\output\\less10.txt");// just object
 			 PrintStream fw =  new PrintStream(file);
-			 File file2 = new File("D:\\uni\\javaP\\Animals\\testCharacteristics\\between 11 and 40.txt");//просто об’єкт
+			 File file2 = new File("animal2\\output\\between 11 and 40.txt");
 			 PrintStream fw2 =  new PrintStream(file2);
-			 File file3 = new File("D:\\uni\\javaP\\Animals\\testCharacteristics\\more than 40.txt");//просто об’єкт
+			 File file3 = new File("animal2\\output\\more than 40.txt");
 			 PrintStream fw3 =  new PrintStream(file3);
 			 for (Animal anim : allAnimals) {
 				 if(anim.Weight <= 10 ) {
-					 fw.println(anim.toString()); //запис символів до файлу
+					 fw.println(anim.toString()); // writing symbols to file
 				 }else if (11 <= anim.Weight && anim.Weight <= 40) {
 					 fw2.println(anim.toString());
 				 }else if (anim.Weight > 40)
