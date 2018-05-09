@@ -10,14 +10,13 @@ import java.util.List;
 
 public class Writer {
 	 public static void main(List<Animal> allAnimals) throws IOException {
-		// List<Animal> Animals = allAnimals;
 			Reader read = new Reader();
 		 try {
-			 File file = new File("animal2\\output\\less10.txt");// just object
+			 File file = new File("output\\between 11 and 40.txt");// just object
 			 PrintStream fw =  new PrintStream(file);
-			 File file2 = new File("animal2\\output\\between 11 and 40.txt");
+			 File file2 = new File("output\\between 11 and 40.txt");
 			 PrintStream fw2 =  new PrintStream(file2);
-			 File file3 = new File("animal2\\output\\more than 40.txt");
+			 File file3 = new File("output\\more than 40.txt");
 			 PrintStream fw3 =  new PrintStream(file3);
 			 for (Animal anim : allAnimals) {
 				 if(anim.Weight <= 10 ) {

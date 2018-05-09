@@ -8,17 +8,17 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Reader {
-	// List<Animal> animalList = new ArrayList<>();
-
 	public static List<Animal> getAnimalFromFiles(String[] fileNames) {
+		List<String> list = new ArrayList<>();
 		List<Animal> animalList = new ArrayList<>();
 		for (String fileName : fileNames) {
-			try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-				String line;
-				while ((line = br.readLine()) != null) {
+			try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
+				list = stream.collect(Collectors.toList());
+				for (String line : list) {
 					String[] splittedLine = line.split(" ");
 					Animal anim = new Animal(Integer.parseInt(splittedLine[0]),
 							splittedLine[1], Integer.parseInt(splittedLine[2]),
