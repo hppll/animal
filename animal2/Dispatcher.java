@@ -20,7 +20,6 @@ public class Dispatcher {
 		}else if(value.equals("Lifetime")) {
 			Collections.sort(allAnimals, new SortLifetime());
 		}
-			
 		Writer writer = new Writer();
 		writer.main(allAnimals);
 	}
