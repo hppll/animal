@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class Dispatcher {
-	public static void main(String v) throws IOException {
+	public static void handler(String v) throws IOException {
 		String value = v;
 		String[] fileNames = new String [3];
-		fileNames[0] = "input\\Animal.txt";
+		fileNames[0] = "input\\Animal.txt"; // error here
 		fileNames[1] = "input\\Animal2.txt";
 		fileNames[2] = "input\\Animal3.txt";
 		List<Animal> allAnimals = Reader.getAnimalFromFiles(fileNames);
@@ -20,6 +20,5 @@ public class Dispatcher {
 			Collections.sort(allAnimals, new SortLifetime());
 		}
 		Writer.writer(allAnimals);
-		SceneBuilder.status(false, "Completed");
 	}
 }

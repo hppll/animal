@@ -2,6 +2,7 @@ package animal2;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Reader {
-	public static List<Animal> getAnimalFromFiles(String[] fileNames) {
+	public static List<Animal> getAnimalFromFiles(String[] fileNames) throws IOException {
 		List<String> list = new ArrayList<>();
 		List<Animal> animalList = new ArrayList<>();
 		for (String fileName : fileNames) {
@@ -22,8 +23,18 @@ public class Reader {
 							Integer.parseInt(splittedLine[3]));
 					animalList.add(anim);
 				}	
-			} catch (IOException e) {
+			}catch (NumberFormatException e) {
 				e.printStackTrace();
+				String status = "Wrong lines format.";
+				SceneBuilder.showDialog(status);
+			}catch (NoSuchFileException e) {
+				e.printStackTrace();
+				String s = "File " + fileName + " not found.";
+				SceneBuilder.showDialog(s);
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+				SceneBuilder.showDialog(null);
 			}
 		}
 		return (animalList);

@@ -1,6 +1,7 @@
 package animal2;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
@@ -14,7 +15,7 @@ public class Writer {
 			 for (Animal anim : allAnimals) {
 				 if(anim.Weight <= 10 ) {
 					lessThan10.append(anim).append("\r\n").toString();
-				 }else if (11 <= anim.Weight && anim.Weight <= 40) {
+				 }else if (anim.Weight <= 40) {
 					 between11and40.append(anim).append("\r\n").toString();
 				 }else {
 					 moreThan40.append(anim).append("\r\n").toString();
@@ -38,7 +39,18 @@ public class Writer {
 			 fw3.flush();
 			 fw3.close();
 			 
-		 }  catch(IOException  e) { }
+		 }catch(SecurityException  e) {
+			 e.printStackTrace();
+				String s = "No access to the requested path.";
+				SceneBuilder.showDialog(s);
+		 }
+		 catch(FileNotFoundException  e) {
+			 e.printStackTrace();
+				String s = "Incorrect path to the file to be recorded.";
+				SceneBuilder.showDialog(s);
+		 }
+		 catch(IOException  e) {
+		 }
 		 System.out.print("!");  
 	 }
 }
