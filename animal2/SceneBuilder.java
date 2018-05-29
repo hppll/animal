@@ -1,12 +1,16 @@
 package animal2;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.NoSuchFileException;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -22,21 +26,28 @@ public class SceneBuilder extends Application {
     	stage.setTitle("Sorting of animals");
     	stage.setMinHeight(120);
     	stage.setMinWidth(290);
-    	Scene scene = new Scene(new Group(), 300, 150);
+    	
     	final ComboBox animalComboBox = new ComboBox();
     	animalComboBox.getItems().addAll(
     			"Animal",
     			"Weight",
     			"Lifetime");
     	animalComboBox.setValue("Choose");
-   
+    	
+     /*	BorderPane bPane = new BorderPane();  
+    	Scene scene = new Scene(bPane);
+    	bPane.setTop(statusLabel);
+    	bPane.setCenter(animalComboBox);
+    	bPane.setBottom(button);
+    	bPane.setLeft(label);
+    	*/
+    	Scene scene = new Scene(new Group(), 300, 150);
     	GridPane grid = new GridPane();
     	grid.add(statusLabel, 0, 0);
     	grid.add(label,  0, 1); //column - line
     	grid.setVgap(4);
     	grid.setHgap(10);
     	grid.setPadding(new Insets(15, 15, 15, 15));
- 
     	grid.add(animalComboBox, 1, 1);
     	grid.add(button, 1, 2);
     	Group root = (Group)scene.getRoot();
@@ -53,11 +64,22 @@ public class SceneBuilder extends Application {
     			label.setText("Select a sorting method: ");
     			SceneBuilder.status(button, statusLabel, true, "Wait");
     			try {
-    				Dispatcher.handler(w);
-    				SceneBuilder.status(button, statusLabel, false, "Completed");
-    			} catch (IOException e) {
-    				e.printStackTrace();
+    				Dispatcher dispatcher = new Dispatcher();
+    				dispatcher.handler(w);
+    			}catch (NoSuchFileException e) {
+    				showDialog(e.getMessage());
+    			}catch(NumberFormatException e) {
+    				showDialog(e.getMessage());
+    			}catch(IllegalArgumentException e) {
+    				showDialog(e.getMessage());
+    			}catch(SecurityException e) {
+    				showDialog(e.getMessage());
+    			}catch(FileNotFoundException e) {
+    				showDialog(e.getMessage());
+    			}catch (IOException e) {
+    				showDialog(null);
     			}
+    			SceneBuilder.status(button, statusLabel, false, "Completed");
     		}
     	}
     			);
@@ -71,12 +93,14 @@ public class SceneBuilder extends Application {
  		}
  		button.setDisable(buttonStatus);
  	}
-    public static void showDialog(String s) {
-		Alert dialog = new Alert(AlertType.INFORMATION);
+    public void showDialog(String s) {
+		Alert dialog = new Alert(AlertType.ERROR);
 		String info = "You need to check the input data.";
-		if (s == null)
+		if (s == null) {
 			dialog.setContentText("Something went wrong." + "\n" + info);
-		dialog.setContentText(s + "\n" + info);
+		}else{ 
+			dialog.setContentText(s + "\n" + info);
+		}
 		dialog.setTitle("Error");
 		dialog.setHeaderText(null);
 		dialog.showAndWait();

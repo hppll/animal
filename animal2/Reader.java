@@ -24,17 +24,12 @@ public class Reader {
 					animalList.add(anim);
 				}	
 			}catch (NumberFormatException e) {
-				e.printStackTrace();
-				String status = "Wrong lines format.";
-				SceneBuilder.showDialog(status);
+				throw new NumberFormatException("Wrong lines format.");
 			}catch (NoSuchFileException e) {
-				e.printStackTrace();
-				String s = "File " + fileName + " not found.";
-				SceneBuilder.showDialog(s);
+				throw new NoSuchFileException("File " + fileName + " not found.");
 			}
 			catch (IOException e) {
-				e.printStackTrace();
-				SceneBuilder.showDialog(null);
+				throw new IOException();
 			}
 		}
 		return (animalList);

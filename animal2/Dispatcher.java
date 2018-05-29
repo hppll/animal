@@ -5,10 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Dispatcher {
-	public static void handler(String v) throws IOException {
-		String value = v;
+	public void handler(String value) throws IOException {
 		String[] fileNames = new String [3];
-		fileNames[0] = "input\\Animal.txt"; // error here
+		fileNames[0] = "input\\Animal.txt"; 
 		fileNames[1] = "input\\Animal2.txt";
 		fileNames[2] = "input\\Animal3.txt";
 		List<Animal> allAnimals = Reader.getAnimalFromFiles(fileNames);
@@ -19,6 +18,21 @@ public class Dispatcher {
 		}else if(value.equals("Lifetime")) {
 			Collections.sort(allAnimals, new SortLifetime());
 		}
-		Writer.writer(allAnimals);
+		distribution(allAnimals);
+	}
+	public void distribution(List<Animal> allAnimals) throws IOException {
+		 StringBuilder lessThan10 = new StringBuilder();
+		 StringBuilder between11and40 = new StringBuilder();
+		 StringBuilder moreThan40 = new StringBuilder();
+		 for (Animal animal : allAnimals) {
+			 if(animal.Weight <= 10 ) {
+				lessThan10.append(animal).append("\r\n").toString();
+			 }else if (animal.Weight <= 40) {
+				 between11and40.append(animal).append("\r\n").toString();
+			 }else {
+				 moreThan40.append(animal).append("\r\n").toString();
+			 }
+		 }
+		 Writer.writer(lessThan10, between11and40, moreThan40);
 	}
 }
