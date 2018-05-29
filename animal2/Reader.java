@@ -1,6 +1,7 @@
 package animal2;
 
 import java.io.IOException;
+import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
@@ -10,7 +11,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Reader {
-	public static List<Animal> getAnimalFromFiles(String[] fileNames) throws IOException {
+	public static List<Animal> getAnimalFromFiles(String[] fileNames) throws IOException,
+	IllegalArgumentException, FileSystemException {
 		List<String> list = new ArrayList<>();
 		List<Animal> animalList = new ArrayList<>();
 		for (String fileName : fileNames) {
@@ -26,10 +28,9 @@ public class Reader {
 			}catch (NumberFormatException e) {
 				throw new NumberFormatException("Wrong lines format.");
 			}catch (NoSuchFileException e) {
-				throw new NoSuchFileException("File " + fileName + " not found.");
-			}
-			catch (IOException e) {
-				throw new IOException();
+				throw new NoSuchFileException("File '" + fileName + "' not found.");
+			}catch (IOException e) {
+				throw new IOException("Something went wrong.");
 			}
 		}
 		return (animalList);

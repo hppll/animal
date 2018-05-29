@@ -62,29 +62,19 @@ public class SceneBuilder extends Application {
     			label.setText("You should select a method.");		 
     		}else {
     			label.setText("Select a sorting method: ");
-    			SceneBuilder.status(button, statusLabel, true, "Wait");
+    			SceneBuilder.setStatus(button, statusLabel, true, "Wait");
     			try {
     				Dispatcher dispatcher = new Dispatcher();
-    				dispatcher.handler(w);
-    			}catch (NoSuchFileException e) {
+    				dispatcher.handle(w);
+    			}catch (Exception e) {
     				showDialog(e.getMessage());
-    			}catch(NumberFormatException e) {
-    				showDialog(e.getMessage());
-    			}catch(IllegalArgumentException e) {
-    				showDialog(e.getMessage());
-    			}catch(SecurityException e) {
-    				showDialog(e.getMessage());
-    			}catch(FileNotFoundException e) {
-    				showDialog(e.getMessage());
-    			}catch (IOException e) {
-    				showDialog(null);
     			}
-    			SceneBuilder.status(button, statusLabel, false, "Completed");
+    			SceneBuilder.setStatus(button, statusLabel, false, "Completed");
     		}
     	}
     			);
     }
-    public static void status(Button button, Label statusLabel, 
+    public static void setStatus(Button button, Label statusLabel, 
  			boolean buttonStatus, String labelStatus) {
  		if(labelStatus.equals("Wait")) {
  			statusLabel.setText("Wait");
@@ -96,11 +86,7 @@ public class SceneBuilder extends Application {
     public void showDialog(String s) {
 		Alert dialog = new Alert(AlertType.ERROR);
 		String info = "You need to check the input data.";
-		if (s == null) {
-			dialog.setContentText("Something went wrong." + "\n" + info);
-		}else{ 
-			dialog.setContentText(s + "\n" + info);
-		}
+		dialog.setContentText(s + "\n" + info);
 		dialog.setTitle("Error");
 		dialog.setHeaderText(null);
 		dialog.showAndWait();

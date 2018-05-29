@@ -4,26 +4,27 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.file.FileSystemException;
 
 public class Writer {
-	 public static void writer(StringBuilder lessThan10, StringBuilder between11and40,
-			 StringBuilder moreThan40) throws IOException {
+	 public static void write(String [] distributedAnimals) throws IOException,
+	 IllegalArgumentException, RuntimeException {
 		 try {
 			 File file = new File("output\\less_than_10.txt");// just object
 			 PrintStream fw =  new PrintStream(file);
-			 fw.print(lessThan10);
+			 fw.print(distributedAnimals[0]); // writing "less than 10" animals
 			 fw.flush();
 			 fw.close();
 			 
 			 File file2 = new File("output\\between_11_and_40.txt");
 			 PrintStream fw2 =  new PrintStream(file2);
-			 fw2.println(between11and40);
+			 fw2.println(distributedAnimals[1]); // writing "between 11 and 40" animals
 			 fw2.flush();
 			 fw2.close();
 			 
 			 File file3 = new File("output\\more_than_40.txt");
 			 PrintStream fw3 =  new PrintStream(file3);
-			 fw3.println(moreThan40);
+			 fw3.println(distributedAnimals[2]); // writing "more than 40" animals
 			 fw3.flush();
 			 fw3.close();
 			 
@@ -32,9 +33,6 @@ public class Writer {
 		 }
 		 catch(FileNotFoundException  e) {
 			 throw new FileNotFoundException("Incorrect path to the file to be recorded.");
-		 }
-		 catch(IOException  e) {
-			 throw new IOException();
 		 }
 	 }
 }

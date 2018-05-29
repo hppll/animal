@@ -6,17 +6,14 @@ public class Animal{
 	public int Weight;
 	public int Lifetime;
 	
-	public Animal () {
-		throw new NumberFormatException("Invalid input line format.");
-	}
 	public Animal (int Number, String Animal, int Weight, int Lifetime){
 		this.Number = Number;
 		this.Animal = Animal;
 		this.Weight = Weight;
 		this.Lifetime = Lifetime;
-			if (Lifetime < 0) {
+			if (Lifetime <= 0) {
 			throw new IllegalArgumentException("The value of the variable is invalid: Lifetime = " + Lifetime);
-		}else if (Weight < 0) {
+		}else if (Weight <= 0) {
 			throw new IllegalArgumentException("The value of the variable is invalid: Weight = " + Weight);
 		}
 	}
